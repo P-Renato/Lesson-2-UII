@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1</title>
+    <style>
+        svg {
+            position: absolute;
+            margin: 50px;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    We will see gow to modify inline styles using js
+    -->
+    <svg width="50" height="50">
+        <circle cx="25" cy="25"r="25" fill="blue"/>
+    </svg>
+
+    <!-- ADd buttons -->
+     <button class="right">Right</button>
+     <button class="down">Down</button>
+     <button class="up">Up</button>
+     <button class="left">Left</button>
+     <button class="up-right">Up-Right</button>
+     <button class="down-right">Down-Right</button>
+     <button class="up-left">Up-Left</button>
+     <button class="down-left">Down-Left</button>
+
+     <script>
+        // Target svg element
+        const ball = document.querySelector("svg")
+        // We can modify inline styles using the "style" property
+        // ball.style.top = "50px"; This is hard coding DO NOT DO THAT
+
+        let x = 100; // This sets the starting positon 
+        let y = 100; // This sets the starting positon 
+
+        function moveBall( x, y ){
+            ball.style.top = `${y}px`
+            ball.style.left = `${x}px`
+
+        }
+
+        // Moving the ball down
+        // Target "down" button
+        const down = document.querySelector(".down");
+        console.log(down)
+        // Add event listener to our target
+        down.addEventListener("click", function(){
+            console.log("down");
+            y = y + 10;
+            moveBall( x, y );
+        });
+
+        // Task move the ball up
+        const up = document.querySelector(".up");
+        console.log(up);
+        up.addEventListener("click", function(){
+            console.log("up");
+            y = y - 10;
+            moveBall( x, y );
+        });
+
+        // Task move the ball left and right
+
+        // Moving the ball left
+        const left = document.querySelector(".left");
+        console.log(left);
+        left.addEventListener("click", function(){
+            console.log("left");
+            x -= 10;
+            moveBall( x, y );
+        });
+
+
+        // Moving the ball to the left
+        const right = document.querySelector(".right");
+        console.log(right);
+        right.addEventListener("click", function(){
+            console.log("right");
+            x += 10;
+            moveBall( x, y );
+        });
+
+        const upRight = document.querySelector(".up-right");
+        console.log(upRight);
+        upRight.addEventListener("click", function(){
+            console.log("upRight");
+            x += 10;
+            y -= 10;
+            moveBall( x, y );
+        });
+
+        const downRight = document.querySelector(".down-right");
+        console.log(downRight);
+        downRight.addEventListener("click", function(){
+            console.log("downRight");
+            x += 10;
+            y += 10;
+            moveBall( x, y );
+        });
+
+        const upLeft = document.querySelector(".up-left");
+        console.log(upLeft);
+        upLeft.addEventListener("click", function(){
+            console.log("upLeft");
+            x -= 10;
+            y -= 10;
+            moveBall( x, y );
+        });
+
+        const downLeft = document.querySelector(".down-left");
+        console.log(downLeft);
+        downLeft.addEventListener("click", function(){
+            console.log("downLeft");
+            x -= 10;
+            y += 10;
+            moveBall( x, y );
+        });
+
+        const circle = ball.querySelector("circle")
+        circle.addEventListener("click",function(){
+            console.log(circle);
+            circle.style.fill = "green"
+        })
+
+
+
+
+     </script>
+</body>
+</html>

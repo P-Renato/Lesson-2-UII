@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2</title>
+    <style>
+        button {
+            margin: 10px 0;
+            display: block;
+            background: lightblue;
+        }
+        button.green {
+            background: lightgreen;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Element Event Logging Demo</h1>
+    <button>Click Me</button>
+    <textarea class="output"></textarea>
+    
+
+
+    <script>
+        const button = document.querySelector("button");
+        const output = document.querySelector(".output");
+
+        // We are going to have many messsages so we use an array to hold them all
+        const messages = [];
+
+        /*
+        In order to display the messages we will use a function
+        The function will:
+        - recieve a message
+        - store the message in the messages[]
+        - display the messsage in the textarea
+
+        */
+       function log( message ){
+        messages.push(`${message}`);
+        output.value = messages.join('\n');
+       }
+
+       // Let's log our first message
+       log("Loading document");
+
+       button.addEventListener("click", function(){
+        log("Button was clicked");
+
+        // We are going to use the classlist property in order to add/remove class "green"
+        // classList
+        button.classList.toggle("green")
+       })
+
+       // Log message on hover
+       button.addEventListener("mouseover",function(){
+            log("Button was hovered");
+       });
+
+       // Log message when unhovered
+       button.addEventListener("mouseout", function(){
+            log( "Button was unhovered");
+       })
+
+
+       // DOCUMENT RELATED EVENTS *******
+       // Event listener can target the whole document as well
+       document.addEventListener("keydown", function(event){
+            log(`Key was pressed: ${event.key}`);
+            console.log( event )
+       })
+
+
+       document.addEventListener("click", function(){
+        log("Document was clicked");
+       })
+
+       document.addEventListener("DOMContentLoaded", function(){
+            log("Document was loaded");
+       })
+
+
+       button.addEventListener("mousemove", function(event){
+         console.log(event);
+         log(`BTN: Mouse moved at ${event.offsetX}, ${event.offsetY}`);
+       })
+
+       document.addEventListener("mousemove", function(event){
+        const hue = event.offsetX;
+        document.body.style.background = `hsl(${hue}, 80%, 80%)  `
+
+       })
+
+
+
+
+    </script>
+</body>
+</html>
